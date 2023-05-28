@@ -27,3 +27,18 @@ func getListNode() *ListNode {
 	result.Next.Next.Next.Next = &ListNode{5, nil}
 	return &result
 }
+
+func removeNthFromEnd(head *ListNode, n int) *ListNode {
+	result := &ListNode{Next: head, Val: -1}
+	slow, fast := result, head
+	for n > 0 {
+		fast = fast.Next
+		n--
+	}
+	for fast != nil {
+		slow = slow.Next
+		fast = fast.Next
+	}
+	slow.Next = slow.Next.Next
+	return result.Next
+}

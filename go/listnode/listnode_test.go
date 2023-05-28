@@ -8,4 +8,5 @@ import (
 func TestListNode(t *testing.T) {
 	node := getListNode()
 	fmt.Print(node.toString())
+	removeNthFromEnd(node, 2)
 }
