@@ -20,3 +20,7 @@ func TestCanPlaceFlowers(t *testing.T) {
 func TestReverseVowels(t *testing.T) {
 	fmt.Printf("-----%v\n", reverseVowels("hello"))
 }
+
+func TestIncreasingTriplet(t *testing.T) {
+	fmt.Printf("====%v\n", increasingTriplet([]int{1, 2, 3, 4, 5}))
+}

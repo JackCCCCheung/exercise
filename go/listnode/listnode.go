@@ -11,6 +11,7 @@ type ListNode struct {
 
 func (l *ListNode) toString() string {
 	result := ""
+
 	tmp := l
 	for tmp != nil {
 		result = result + "->" + strconv.Itoa(tmp.Val)

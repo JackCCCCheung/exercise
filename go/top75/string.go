@@ -1,6 +1,9 @@
 package top75
 
-import "strings"
+import (
+	"math"
+	"strings"
+)
 
 // GcdOfStrings 1071. 字符串的最大公因子
 // 对于字符串s 和t，只有在s = t + ... + t（t 自身连接 1 次或多次）时，我们才认定“t 能除尽 s”。
@@ -129,4 +132,22 @@ func reverseVowels(s string) string {
 		}
 	}
 	return string(result)
+}
+
+// increasingTriplet 334. 递增的三元子序列
+func increasingTriplet(nums []int) bool {
+	if len(nums) < 3 {
+		return false
+	}
+	first, sceond := math.MaxInt, math.MaxInt
+	for _, item := range nums {
+		if item <= first {
+			first = item
+		} else if item <= sceond {
+			sceond = item
+		} else {
+			return true
+		}
+	}
+	return false
 }
