@@ -2,6 +2,7 @@ package top75
 
 import (
 	"math"
+	"sort"
 	"strings"
 )
 
@@ -150,4 +151,76 @@ func increasingTriplet(nums []int) bool {
 		}
 	}
 	return false
+}
+
+// threeSum 15. 三数之和
+//给你一个整数数组 nums ，判断是否存在三元组 [nums[i], nums[j], nums[k]]
+//满足 i != j、i != k 且 j != k ，同时还满足 nums[i] + nums[j] + nums[k] == 0 。请
+//你返回所有和为 0 且不重复的三元组。
+//输入：nums = [-1,0,1,2,-1,-4]
+//输出：[[-1,-1,2],[-1,0,1]]
+
+func threeSum(nums []int) [][]int {
+	sort.Ints(nums)
+	if len(nums) == 0 || nums[0] > 0 {
+		return nil
+	}
+	result := make([][]int, 0)
+	length := len(nums)
+	for i := 0; i < length; i++ {
+		if i > 0 && nums[i] == nums[i-1] {
+			continue
+		}
+		left, right := i+1, length-1
+		for left < right {
+			sum := nums[i] + nums[left] + nums[right]
+			if sum > 0 {
+				right--
+			} else if sum < 0 {
+				left++
+			} else {
+				result = append(result, []int{nums[i], nums[left], nums[right]})
+				for left < right && nums[left] == nums[left+1] {
+					left++
+				}
+				for left < right && nums[right] == nums[right-1] {
+					right--
+				}
+				left++
+				right--
+			}
+		}
+	}
+	return result
+}
+
+func threeSum2(nums []int) [][]int {
+	sort.Ints(nums)
+	result := make([][]int, 0)
+	length := len(nums)
+	for i := 0; i < length; i++ {
+		if i > 0 && nums[i] == nums[i-1] {
+			continue
+		}
+		target, left, right := 0-nums[i], i+1, length-1
+		for left < right {
+			if left+right < target {
+				right++
+			} else if left+right > target {
+				right--
+			} else {
+				result = append(result, []int{nums[i], nums[left], nums[right]})
+				for left < right && nums[right] == nums[right-1] {
+					right--
+				}
+				for left < right && nums[left] == nums[left+1] {
+					left++
+				}
+				left++
+				right--
+			}
+		}
+
+	}
+	return result
 }

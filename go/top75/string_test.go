@@ -24,3 +24,15 @@ func TestReverseVowels(t *testing.T) {
 func TestIncreasingTriplet(t *testing.T) {
 	fmt.Printf("====%v\n", increasingTriplet([]int{1, 2, 3, 4, 5}))
 }
+
+func TestThreeSum(t *testing.T) {
+	array := []int{1, 2, 3, 4, 5}
+	left, right := 0, len(array)-1
+	for left < right {
+		array[left], array[right] = array[right], array[left]
+		left++
+		right--
+	}
+	fmt.Printf("-------------%v", array)
+	fmt.Printf("----------%v\n", threeSum([]int{-1, 0, 1, 2, -1, -4, -1}))
+}
