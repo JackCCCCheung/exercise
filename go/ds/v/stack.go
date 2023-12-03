@@ -22,6 +22,13 @@ func (s *Stack[T]) Pop() T {
 	return e
 }
 
+func (s *Stack[T]) Peek() T {
+	l := len(s.v)
+	if l == 0 {
+		panic(" stack is empty")
+	}
+	return s.v[l-1]
+}
 func (s *Stack[T]) IsEmpty() bool {
 	return len(s.v) == 0
 }
